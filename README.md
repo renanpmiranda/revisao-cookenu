@@ -17,6 +17,10 @@ Para utilizar o site é necessário criar uma conta, não sendo possível visual
 
 ## API
 
+A API possui um mecanismo de economia de recursos automático: caso ela não seja utilizada por 15 minutos o serviço é desligado.<br>
+Isso faz com que a primeira requisição após 15 minutos demande mais tempo para ser respondida, pois o serviço precisa ser reiniciado.<br>
+Esse processo leva em torno de 20 a 30 segundos, então levem isso em consideração quando estiverem se integrando com ela.
+
 https://documenter.getpostman.com/view/21151478/2s8YzMZRju#intro
 
 ## Exemplo de implementação
