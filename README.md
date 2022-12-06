@@ -20,7 +20,7 @@ https://documenter.getpostman.com/view/21151478/2s8YzMZRju#intro
 
 ## Exemplo de implementação
 
-https://xufzy0.csb.app/
+https://cookenu-v1.surge.sh/
 
 O código desse repositório é apenas um template do create-react-app limpo e servirá como ponto inicial para a revisão.<br>
 O código completo da implementação será disponibilizado ao longo da dinâmica.
