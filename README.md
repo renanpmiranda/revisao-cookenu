@@ -13,3 +13,9 @@ O Cookenu é uma rede social onde as pessoas podem compartilhar suas receitas cu
 ## API
 
 https://documenter.getpostman.com/view/21151478/2s8YzMZRju#intro
+
+## Exemplo de implementação
+
+https://xufzy0.csb.app/
+
+O código fonte será disponibilizado ao longo da dinâmica.
