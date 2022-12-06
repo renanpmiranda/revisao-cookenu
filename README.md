@@ -23,7 +23,7 @@ https://documenter.getpostman.com/view/21151478/2s8YzMZRju#intro
 https://xufzy0.csb.app/
 
 O código desse repositório é apenas um template do create-react-app limpo e servirá como ponto inicial para a revisão.<br>
-O código completo será disponibilizado ao longo da dinâmica.
+O código completo da implementação será disponibilizado ao longo da dinâmica.
 
 ## Conta para teste
 - fulana@gmail.com
