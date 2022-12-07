@@ -1,80 +1,81 @@
 import {
-    Flex,
-    Box,
-    FormControl,
-    FormLabel,
-    Input,
-    Stack,
-    Button,
-    Heading,
-    Text,
-    useColorModeValue,
-    Spinner,
-    Link
-  } from '@chakra-ui/react';
+  Flex,
+  Box,
+  FormControl,
+  FormLabel,
+  Input,
+  Stack,
+  Button,
+  Heading,
+  Text,
+  useColorModeValue,
+  Spinner,
+  Link
+} from '@chakra-ui/react';
 
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BASE_URL } from '../../constants/url' 
+import { BASE_URL } from '../../constants/url'
 import { goToHomePage, goToSignUpPage } from '../../routes/coordinator';
-  
-  const LoginPage = () => {
 
-    // const [email, setEmail] = useState("")
-    // const [password, setPassword] = useState("")
+const LoginPage = () => {
 
-    const navigate = useNavigate()
-    
-    const [isLoading, setIsLoading] = useState(false)
+  // const [email, setEmail] = useState("")
+  // const [password, setPassword] = useState("")
 
-    const [form, setForm] = useState({
-        email: "",
-        password: ""
+  const navigate = useNavigate()
+
+  const [isLoading, setIsLoading] = useState(false)
+
+  const [form, setForm] = useState({
+    email: "",
+    password: ""
+  })
+
+  // const onChangeEmail = (e) => {
+  //     setEmail(e.target.value)
+  // }
+
+  // const onChangePassword = (e) => {
+  //     setPassword(e.target.value)
+  // }
+
+  const onChangeForm = (e) => {
+    setForm({
+      ...form, [e.target.name]: e.target.value
     })
+  }
 
-    // const onChangeEmail = (e) => {
-    //     setEmail(e.target.value)
-    // }
+  const login = async () => {
+    try {
 
-    // const onChangePassword = (e) => {
-    //     setPassword(e.target.value)
-    // }
+      setIsLoading(true)
 
-    const onChangeForm = (e) => {
-        setForm({
-            ...form, [e.target.name]: e.target.value
-        })
-    }
+      const body = {
+        email: form.email,
+        password: form.password
+      }
 
-    const login = async () => {
-      try {
-
-        setIsLoading(true)
-
-        const body = {
-          email: form.email,
-          password: form.password
-        }
-
-        const response = await axios.post(`
+      const response = await axios.post(`
           ${BASE_URL}/user/login`,
-          body      
-        )
-        
-        window.localStorage.setItem("cookenu-token", response.data.token)
+        body
+      )
 
-        goToHomePage(navigate)
+      window.localStorage.setItem("cookenu-token", response.data.token)
 
-        setIsLoading(false)
+      goToHomePage(navigate)
 
-      } catch (error) {
-        console.log(error)
-        setIsLoading(false)
-      }                       
+      setIsLoading(false)
+
+    } catch (error) {
+      console.log(error)
+      setIsLoading(false)
     }
+  }
 
-    return (
+  return (
+    <>
       <Flex
         minH={'100vh'}
         align={'center'}
@@ -95,24 +96,24 @@ import { goToHomePage, goToSignUpPage } from '../../routes/coordinator';
             <Stack spacing={4}>
               <FormControl id="email">
                 <FormLabel>Endereço de e-mail</FormLabel>
-                <Input 
-                  type="email" 
-                  value={form.email} 
-                  onChange={onChangeForm} 
+                <Input
+                  type="email"
+                  value={form.email}
+                  onChange={onChangeForm}
                   name="email"
                   autoComplete='off'
                 />
               </FormControl>
               <FormControl id="password">
                 <FormLabel>Senha</FormLabel>
-                <Input 
-                  type="password" 
-                  value={form.password} 
-                  onChange={onChangeForm} 
+                <Input
+                  type="password"
+                  value={form.password}
+                  onChange={onChangeForm}
                   name="password"
                 />
               </FormControl>
-              <Stack spacing={10}>                
+              <Stack spacing={10}>
                 <Button
                   bg={'blue.400'}
                   color={'white'}
@@ -120,13 +121,13 @@ import { goToHomePage, goToSignUpPage } from '../../routes/coordinator';
                     bg: 'blue.500',
                   }}
                   onClick={login}
-                  >
-                    {isLoading ? <Spinner/> : "Entrar"}                  
+                >
+                  {isLoading ? <Spinner /> : "Entrar"}
                 </Button>
               </Stack>
-              <Stack spacing={10}>                
+              <Stack spacing={10}>
                 <Text>
-                  Ainda não tem conta? {" "}  
+                  Ainda não tem conta? {" "}
                   <Link color="blue" onClick={() => goToSignUpPage(navigate)}>
                     Cadastre-se!
                   </Link>
@@ -136,7 +137,8 @@ import { goToHomePage, goToSignUpPage } from '../../routes/coordinator';
           </Box>
         </Stack>
       </Flex>
-    );
-  }
+    </>
+  );
+}
 
 export default LoginPage
