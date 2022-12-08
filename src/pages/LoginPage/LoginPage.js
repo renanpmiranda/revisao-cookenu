@@ -14,9 +14,10 @@ import {
 } from '@chakra-ui/react';
 
 import axios from 'axios';
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BASE_URL } from '../../constants/url'
+import { GlobalContext } from '../../contexts/GlobalContext';
 import { goToHomePage, goToSignUpPage } from '../../routes/coordinator';
 
 const LoginPage = () => {
@@ -24,7 +25,15 @@ const LoginPage = () => {
   // const [email, setEmail] = useState("")
   // const [password, setPassword] = useState("")
 
+  const context = useContext(GlobalContext)
+
   const navigate = useNavigate()
+
+  useEffect(() => {
+    if(context.isAuth){
+      goToHomePage(navigate)
+    }
+  })
 
   const [isLoading, setIsLoading] = useState(false)
 
@@ -64,9 +73,9 @@ const LoginPage = () => {
 
       window.localStorage.setItem("cookenu-token", response.data.token)
 
-      goToHomePage(navigate)
-
       setIsLoading(false)
+      context.setIsAuth(true)
+      goToHomePage(navigate)
 
     } catch (error) {
       console.log(error)
