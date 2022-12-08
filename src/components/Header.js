@@ -18,7 +18,7 @@ function Header() {
 
   return (
     <Flex h="80px" max-width="1200px" bg="lightgrey" justifyContent="end" alignItems="center" paddingRight="32px">
-        <Button onClick={logout}>Deslogar</Button>
+        <Button colorScheme={"blue"} onClick={logout}>Deslogar</Button>
     </Flex>    
   )
 }
