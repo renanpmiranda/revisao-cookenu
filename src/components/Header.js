@@ -1,15 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Flex, Button, Center } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
 import { goToLoginPage } from '../routes/coordinator'
+import { GlobalContext } from '../contexts/GlobalContext'
 
 function Header() {
+
+    const context = useContext(GlobalContext)
 
     const navigate = useNavigate()
 
     const logout = () => {
         window.localStorage.removeItem("cookenu-token")
-        goToLoginPage(navigate)
+        context.setIsAuth(false)
+        goToLoginPage(navigate)        
     }
 
   return (
